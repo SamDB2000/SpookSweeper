@@ -54,7 +54,6 @@ public class Tile_Script : MonoBehaviour
     public void UncoverTile()
     {
 
-        mineText.GetComponent<MeshRenderer>().enabled = true;
         if (this.isMined)
         {
             mineText.text = "B";
@@ -73,6 +72,8 @@ public class Tile_Script : MonoBehaviour
                 this.GetComponent<MeshRenderer>().material = uncovered;
             }
         }
+        mineText.GetComponent<MeshRenderer>().enabled = true;
+
     }
 
 
@@ -191,6 +192,7 @@ public class Tile_Script : MonoBehaviour
 
     private void UncoverTileExternal()
     {
+        mineText.text = adjacentMines.ToString();
         mineText.GetComponent<MeshRenderer>().enabled = true;
         covered = false;
         if (!winTile)
