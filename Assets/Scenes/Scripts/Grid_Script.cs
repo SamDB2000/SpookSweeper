@@ -70,9 +70,17 @@ public class Grid_Script : MonoBehaviour
     void AssignMines()
     {
         tilesUnmined.AddRange(tilesAll);
-
+        for (int i = numTiles - 1; i >= 0; i--) {
+            var tile = tilesUnmined[i];
+            if (tile.coord.x < 3 && tile.coord.y < 3)
+            {
+                Debug.Log(tile.coord.x);
+                tilesUnmined.Remove(tile);
+            }
+        }
+        int nTotalUnmined = tilesUnmined.Count; // krithik doesn't like this
         System.Random rnd = new System.Random();
-        for(int minesAssigned = 0; minesAssigned < numTiles * percentMines; minesAssigned += 1)
+        for(int minesAssigned = 0; minesAssigned < nTotalUnmined * percentMines; minesAssigned += 1)
         {
             Tile_Script currentTile = tilesUnmined[rnd.Next(0, tilesUnmined.Count)];
             tilesMined.Add(currentTile);
@@ -81,12 +89,6 @@ public class Grid_Script : MonoBehaviour
             Tile_Script currentTileComponent = currentTile.GetComponent(typeof(Tile_Script)) as Tile_Script;
             currentTileComponent.isMined = true;
         }
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        
     }
 }
