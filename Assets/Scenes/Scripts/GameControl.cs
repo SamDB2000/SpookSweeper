@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameControl : MonoBehaviour
 {
@@ -39,6 +40,7 @@ public class GameControl : MonoBehaviour
             if (t.isMined)
             {
                 aboutToDie = true; // detects if the tile the player is moving to is a bomb
+                Invoke("LoadGameEnd", 4);
             } else
             {
                 t.UncoverTile();
@@ -54,5 +56,9 @@ public class GameControl : MonoBehaviour
         return (calcRad <= player.moveDistance); // if the wanted movement is withing or equal to the max distance allowed to travel, then return true to move
     }
 
+    void LoadGameEnd()
+    {
+        SceneManager.LoadScene("EndScene");
+    }
     
 }
