@@ -51,3 +51,4 @@ MonoBehaviour:
   percentMines: 0.25
   gameController: {fileID: 628962820154337572, guid: 854386468e3a2ed478f94b351e7b3972,
     type: 3}
+  winTileMaterial: {fileID: 2100000, guid: eff08e22b6e13d04190dbf130614376a, type: 2}
