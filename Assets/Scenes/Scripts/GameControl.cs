@@ -7,6 +7,7 @@ public class GameControl : MonoBehaviour
 {
     public PlayerControl player;
     public bool aboutToDie;
+    public bool aboutToWin;
     public Tile_Script activeTile;
 
     // Start is called before the first frame update
@@ -31,7 +32,7 @@ public class GameControl : MonoBehaviour
         Debug.Log("CLICK @ " + t.coord);
 
         // take the coordinate and decide if the player should move
-        if (IsValidMove(player.coord, t.coord) && (!aboutToDie))
+        if (IsValidMove(player.coord, t.coord) && (!aboutToDie) && (!aboutToWin))
         {
             // the move is valid, so make it happen
             player.MoveToTile(t);
@@ -41,8 +42,12 @@ public class GameControl : MonoBehaviour
             {
                 aboutToDie = true; // detects if the tile the player is moving to is a bomb
                 Invoke("LoadGameEnd", 4);
-            } else
+            } else if(t.winTile)
             {
+                aboutToWin = true;
+                Invoke("LoadGameWin", 1);
+            }
+            else {
                 t.UncoverTile();
             }
         }
@@ -61,4 +66,8 @@ public class GameControl : MonoBehaviour
         SceneManager.LoadScene("EndScene");
     }
     
+    void LoadGameWin()
+    {
+        SceneManager.LoadScene("WinScene");
+    }
 }
