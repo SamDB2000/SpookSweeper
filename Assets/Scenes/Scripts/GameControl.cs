@@ -41,7 +41,7 @@ public class GameControl : MonoBehaviour
                 aboutToDie = true; // detects if the tile the player is moving to is a bomb
             } else
             {
-                t.DisplayText();
+                t.UncoverTile();
             }
         }
 
