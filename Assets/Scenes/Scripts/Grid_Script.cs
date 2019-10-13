@@ -13,11 +13,14 @@ public class Grid_Script : MonoBehaviour
     public static List<Tile_Script> tilesUnmined;
     public float percentMines = 0.10f;
     public GameControl gameController; // link GameControl to grid
+    public Material winTileMaterial;
+    public Tile_Script winTile;
 
     // Start is called before the first frame update
     void Start()
     {
         CreateTiles();
+        
     }
 
     void CreateTiles()
@@ -52,7 +55,17 @@ public class Grid_Script : MonoBehaviour
         }
 
         AssignMines();
+        CreateWinTile();
     }
+
+    void CreateWinTile()
+    {
+        System.Random rnd = new System.Random();
+        winTile = tilesUnmined[rnd.Next(tilesUnmined.Count - 20, tilesUnmined.Count)];
+        winTile.GetComponent<MeshRenderer>().material = winTileMaterial;
+        winTile.winTile = true;
+    }
+
 
     void AssignMines()
     {

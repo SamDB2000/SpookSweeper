@@ -15,6 +15,7 @@ public class Tile_Script : MonoBehaviour
     public int adjacentMines = 0;
     public string state = "idle";
     public bool covered = true;
+    public bool winTile = false;
 
     public Tile_Script tileUpper;
     public Tile_Script tileLower;
@@ -64,9 +65,14 @@ public class Tile_Script : MonoBehaviour
                 mineText.text = "";
                 UncoverAdjacentTiles();
             }
-            this.GetComponent<MeshRenderer>().material = uncovered;
+            if (!winTile)
+            {
+                this.GetComponent<MeshRenderer>().material = uncovered;
+            }
         }
     }
+
+
 
     // Update is called once per frame
     void Update()
@@ -106,7 +112,7 @@ public class Tile_Script : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if (covered)
+        if (covered && !winTile)
         {
             gameObject.GetComponent<MeshRenderer>().material = materialLightUp;
         }
@@ -120,7 +126,7 @@ public class Tile_Script : MonoBehaviour
 
     private void OnMouseExit()
     {
-        if (covered)
+        if (covered && !winTile)
         {
             gameObject.GetComponent<MeshRenderer>().material = materialIdle;
         }
@@ -186,7 +192,10 @@ public class Tile_Script : MonoBehaviour
         var mineText = Instantiate(displayText, new Vector3(transform.position.x, transform.position.y, transform.position.z - 2), displayText.transform.rotation);
         mineText.text = adjacentMines.ToString();
         covered = false;
-        this.GetComponent<MeshRenderer>().material = uncovered;
+        if (!winTile)
+        {
+            this.GetComponent<MeshRenderer>().material = uncovered;
+        }
     }
     
 }
