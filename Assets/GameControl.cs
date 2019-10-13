@@ -28,7 +28,7 @@ public class GameControl : MonoBehaviour
         Debug.Log("CLICK @ " + t.coord);
 
         // take the coordinate and decide if the player should move
-        if (IsValidMove(player.coord, t.coord) && (!player.isDed))
+        if (IsValidMove(player.coord, t.coord) && (!aboutToDie))
         {
             // the move is valid, so make it happen
             player.MoveToTile(t);
@@ -36,6 +36,9 @@ public class GameControl : MonoBehaviour
             if (t.isMined)
             {
                 aboutToDie = true; // detects if the tile the player is moving to is a bomb
+            } else
+            {
+                t.DisplayText();
             }
         }
 

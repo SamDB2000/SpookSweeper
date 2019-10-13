@@ -37,10 +37,9 @@ public class Tile_Script : MonoBehaviour
     {
         initiateTiles();
         CountMines();
-        tileClickedEvent += DisplayText;
     }
 
-    void DisplayText(Tile_Script t)
+    public void DisplayText()
     {
         
         var mineText = Instantiate(displayText, new Vector3(transform.position.x, transform.position.y, transform.position.z - 5), displayText.transform.rotation);

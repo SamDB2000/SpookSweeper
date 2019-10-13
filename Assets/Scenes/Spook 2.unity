@@ -300,6 +300,11 @@ PrefabInstance:
       propertyPath: gameController
       value: 
       objectReference: {fileID: 1808884377}
+    - target: {fileID: 9092925579263224984, guid: b5b9bc73d3a23c9478b17fc5fb9c73f5,
+        type: 3}
+      propertyPath: percentMines
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5b9bc73d3a23c9478b17fc5fb9c73f5, type: 3}
 --- !u!1001 &628962819813624765
