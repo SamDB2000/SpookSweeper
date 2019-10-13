@@ -24,13 +24,12 @@ public class Tile_Script : MonoBehaviour
     public Tile_Script tileLowerRight;
     public Tile_Script tileLowerLeft;
 
-
-
     public Vector2Int coord; // the coordinates of the tile
-
     public delegate void TileClicked(Tile_Script t); // passes the event to the listeners of the delgate
-
     public event TileClicked tileClickedEvent; // creates the event
+
+    public float shrinkRate; // the rate the player shrinks when dead
+    public float speedRot; // speed of roation for DEATH
 
     // Start is called before the first frame update
     void Start()
@@ -128,7 +127,12 @@ public class Tile_Script : MonoBehaviour
 
     public void TileFall()
     {
-
+        if (isMined)
+        {
+            transform.Rotate(Vector3.forward, 55 * Time.deltaTime * speedRot);
+            transform.localScale *= shrinkRate;
+            Debug.Log("ded");
+        }
     }
 
 }

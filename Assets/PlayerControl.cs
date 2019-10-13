@@ -38,7 +38,7 @@ public class PlayerControl : MonoBehaviour
         {
             transform.Rotate(Vector3.forward, 55 * Time.deltaTime * speedRot);
             transform.localScale *= shrinkRate;
-            Debug.Log("ded");
+            
         }
 
     }
