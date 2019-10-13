@@ -8,9 +8,9 @@ public class Grid_Script : MonoBehaviour
     public int numTiles = 12;
     public float distBetweenTiles = 2.0f;
     public int tilesPerRow = 9;
-    static List<Tile_Script> tilesAll;
-    static List<Tile_Script> tilesMined;
-    static List<Tile_Script> tilesUnmined;
+    public static List<Tile_Script> tilesAll;
+    public static List<Tile_Script> tilesMined;
+    public static List<Tile_Script> tilesUnmined;
     public float percentMines = 0.10f;
     public GameControl gameController; // link GameControl to grid
 
@@ -38,15 +38,15 @@ public class Grid_Script : MonoBehaviour
                 xOffset = 0;
             }
 
-
-
             Vector3 tileScreenPosition = new Vector3(transform.position.x + xOffset, transform.position.y + yOffset, transform.position.z); // creates the location of the tile
             Tile_Script newTile = Instantiate(tilePrefab, tileScreenPosition, tilePrefab.transform.rotation); // creates the tile object
-            tilesAll.Add(newTile); // adds tile to list of tiles
 
-            // assign tile coordinates in integer grid
-            newTile.coord = new Vector2Int(tilesCreated % tilesPerRow, (int) (tilesCreated / tilesPerRow));
+            newTile.ID = tilesCreated;
+            newTile.tilesPerRow = tilesPerRow;
+            newTile.coord = new Vector2Int(tilesCreated % tilesPerRow, (int) (tilesCreated / tilesPerRow));  // assign tile coordinates in integer grid
             newTile.tileClickedEvent += gameController.OnTileClick; // add GameControl as listener to Tile click event
+
+            tilesAll.Add(newTile); // adds tile to list of tiles
 
             xOffset += distBetweenTiles;
         }
