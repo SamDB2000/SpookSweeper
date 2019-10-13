@@ -114,6 +114,7 @@ MonoBehaviour:
   tilesPerRow: 0
   adjacentTiles: []
   adjacentMines: 0
+  state: idle
   tileUpper: {fileID: 0}
   tileLower: {fileID: 0}
   tileLeft: {fileID: 0}
@@ -123,3 +124,5 @@ MonoBehaviour:
   tileLowerRight: {fileID: 0}
   tileLowerLeft: {fileID: 0}
   coord: {x: 0, y: 0}
+  shrinkRate: 0.95
+  speedRot: 0.05

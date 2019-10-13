@@ -31,6 +31,9 @@ public class Tile_Script : MonoBehaviour
     public float shrinkRate; // the rate the player shrinks when dead
     public float speedRot; // speed of roation for DEATH
 
+    public bool isFlagged; // if the tile is flagged or not
+    public SpriteRenderer flag; // the flag sprite
+
     // Start is called before the first frame update
     void Start()
     {
@@ -135,6 +138,21 @@ public class Tile_Script : MonoBehaviour
         }
     }
 
+    public void RenderFlag()
+    {
+        // spawn flag on top of tile when right click
+        if (isFlagged)
+        {
+            // change sprite to flag
+            
+            
+        } else
+        {
+            // change sprite to remove flag
+        }
+    }
+
+    public onMouseClick
 }
 
 

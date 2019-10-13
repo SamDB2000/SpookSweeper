@@ -319,6 +319,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameController
       objectReference: {fileID: 0}
+    - target: {fileID: 628962820154337572, guid: 854386468e3a2ed478f94b351e7b3972,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 6070708281020195451}
     - target: {fileID: 628962820154337575, guid: 854386468e3a2ed478f94b351e7b3972,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -374,11 +379,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 628962820154337572, guid: 854386468e3a2ed478f94b351e7b3972,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 6070708281020195451}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 854386468e3a2ed478f94b351e7b3972, type: 3}
 --- !u!1 &6070708281020195440
@@ -453,7 +453,7 @@ MeshRenderer:
   m_GameObject: {fileID: 6070708281020195440}
   m_Enabled: 0
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
