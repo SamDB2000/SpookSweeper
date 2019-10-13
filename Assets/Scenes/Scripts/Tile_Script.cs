@@ -8,7 +8,8 @@ public class Tile_Script : MonoBehaviour
     public Material materialIdle;
     public Material materialLightUp;
     public Material uncovered;
-    public TextMesh displayText;
+    public TextMesh textPrefab;
+    private TextMesh mineText;
     public int ID;
     public int tilesPerRow;
     public List<Tile_Script> adjacentTiles;
@@ -45,13 +46,15 @@ public class Tile_Script : MonoBehaviour
         initiateTiles();
         CountMines();
         flag = Instantiate(flagPrefab, transform.position + flagPrefab.transform.position, flagPrefab.transform.rotation);
+        mineText = Instantiate(textPrefab, transform.position + textPrefab.transform.position, textPrefab.transform.rotation);
+        mineText.GetComponent<MeshRenderer>().enabled = false;
         flag.GetComponent<SpriteRenderer>().enabled = isFlagged;
     }
 
     public void UncoverTile()
     {
-        
-        var mineText = Instantiate(displayText, new Vector3(transform.position.x, transform.position.y, transform.position.z - 2), displayText.transform.rotation);
+
+        mineText.GetComponent<MeshRenderer>().enabled = true;
         if (this.isMined)
         {
             mineText.text = "B";
@@ -158,7 +161,6 @@ public class Tile_Script : MonoBehaviour
         {
             transform.Rotate(Vector3.forward, 55 * Time.deltaTime * speedRot);
             transform.localScale *= shrinkRate;
-            Debug.Log("ded");
         }
     }
 
@@ -189,8 +191,7 @@ public class Tile_Script : MonoBehaviour
 
     private void UncoverTileExternal()
     {
-        var mineText = Instantiate(displayText, new Vector3(transform.position.x, transform.position.y, transform.position.z - 2), displayText.transform.rotation);
-        mineText.text = adjacentMines.ToString();
+        mineText.GetComponent<MeshRenderer>().enabled = true;
         covered = false;
         if (!winTile)
         {

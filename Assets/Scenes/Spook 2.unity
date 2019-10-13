@@ -230,6 +230,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2488983220763345930, guid: b5b9bc73d3a23c9478b17fc5fb9c73f5,
+        type: 3}
+      propertyPath: m_Name
+      value: Grid
+      objectReference: {fileID: 0}
     - target: {fileID: 9092925579263224984, guid: b5b9bc73d3a23c9478b17fc5fb9c73f5,
         type: 3}
       propertyPath: distBetweenTiles
@@ -243,12 +248,7 @@ PrefabInstance:
     - target: {fileID: 9092925579263224984, guid: b5b9bc73d3a23c9478b17fc5fb9c73f5,
         type: 3}
       propertyPath: percentMines
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2488983220763345930, guid: b5b9bc73d3a23c9478b17fc5fb9c73f5,
-        type: 3}
-      propertyPath: m_Name
-      value: Grid
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 681358959541563858, guid: b5b9bc73d3a23c9478b17fc5fb9c73f5,
         type: 3}
@@ -314,16 +314,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 628962820154337572, guid: 854386468e3a2ed478f94b351e7b3972,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 6070708281020195451}
     - target: {fileID: 628962820154337573, guid: 854386468e3a2ed478f94b351e7b3972,
         type: 3}
       propertyPath: m_Name
       value: GameController
       objectReference: {fileID: 0}
+    - target: {fileID: 628962820154337572, guid: 854386468e3a2ed478f94b351e7b3972,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 6070708281020195451}
     - target: {fileID: 628962820154337575, guid: 854386468e3a2ed478f94b351e7b3972,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -518,10 +518,10 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: -3.6
+  near clip plane: 0.01
   far clip plane: 1000
-  field of view: 70
-  orthographic: 1
+  field of view: 25
+  orthographic: 0
   orthographic size: 3.5
   m_Depth: -1
   m_CullingMask:
