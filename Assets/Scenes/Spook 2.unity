@@ -411,6 +411,9 @@ MonoBehaviour:
   coord: {x: 0, y: 0}
   moveDistance: 2
   moveRate: 0.07
+  isDed: 0
+  shrinkRate: 0.98
+  speedRot: 5
 --- !u!4 &6070708281020195452
 Transform:
   m_ObjectHideFlags: 0

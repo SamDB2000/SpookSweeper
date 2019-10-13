@@ -110,6 +110,11 @@ public class Tile_Script : MonoBehaviour
             displayText.text = "";
     }
 
+    public void TileFall()
+    {
+
+    }
+
 }
 
 
