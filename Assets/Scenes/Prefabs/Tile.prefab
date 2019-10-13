@@ -108,6 +108,7 @@ MonoBehaviour:
   isMined: 0
   materialIdle: {fileID: 2100000, guid: 22ea98ff24e4f424f9e8520b2cbab2a3, type: 2}
   materialLightUp: {fileID: 2100000, guid: 52f13c5285af13b4b9c47550a987d8b9, type: 2}
+  uncovered: {fileID: 2100000, guid: 4284942b6e8bb8641af5b80f5e25bd98, type: 2}
   displayText: {fileID: 7618802998232847963, guid: 2aa94195bc6520d4bb5c1112f1e40ddd,
     type: 3}
   ID: 0
@@ -115,6 +116,7 @@ MonoBehaviour:
   adjacentTiles: []
   adjacentMines: 0
   state: idle
+  covered: 1
   tileUpper: {fileID: 0}
   tileLower: {fileID: 0}
   tileLeft: {fileID: 0}
@@ -126,3 +128,5 @@ MonoBehaviour:
   coord: {x: 0, y: 0}
   shrinkRate: 0.95
   speedRot: 0.05
+  isFlagged: 0
+  flag: {fileID: 0}
