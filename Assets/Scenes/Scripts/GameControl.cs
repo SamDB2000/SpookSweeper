@@ -6,7 +6,7 @@ public class GameControl : MonoBehaviour
 {
     public PlayerControl player;
     public bool aboutToDie;
-    public Tile_Script TileFallActive;
+    public Tile_Script activeTile;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,7 @@ public class GameControl : MonoBehaviour
             // invoke death
             player.KilLBadPlayer();
             //GameObject.Find("Tile").GetComponent<Tile_Script>().TileFall();
-            //TileFallActive.TileFall();
+            activeTile.TileFall();
         }
     }
     public void OnTileClick(Tile_Script t)
@@ -34,6 +34,7 @@ public class GameControl : MonoBehaviour
         {
             // the move is valid, so make it happen
             player.MoveToTile(t);
+            activeTile = t; // refrencing the tile that is the location of the player
 
             if (t.isMined)
             {
