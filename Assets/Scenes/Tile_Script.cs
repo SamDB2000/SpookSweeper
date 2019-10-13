@@ -24,6 +24,13 @@ public class Tile_Script : MonoBehaviour
     public Tile_Script tileLowerLeft;
 
 
+
+    public Vector2Int coord; // the coordinates of the tile
+
+    public delegate void TileClicked(Tile_Script t); // passes the event to the listeners of the delgate
+
+    public event TileClicked tileClickedEvent; // creates the event
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +42,11 @@ public class Tile_Script : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void OnMouseUp()
+    {
+        tileClickedEvent(this); // sends the object as the event
     }
 
     private void initiateTiles()
@@ -94,4 +106,7 @@ public class Tile_Script : MonoBehaviour
         if (adjacentMines <= 0)
             displayText.text = "";
     }
+
 }
+
+

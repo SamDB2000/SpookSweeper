@@ -122,3 +122,4 @@ MonoBehaviour:
   tileUpperLeft: {fileID: 0}
   tileLowerRight: {fileID: 0}
   tileLowerLeft: {fileID: 0}
+  coord: {x: 0, y: 0}
