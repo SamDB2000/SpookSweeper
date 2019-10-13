@@ -7,12 +7,14 @@ public class Tile_Script : MonoBehaviour
     public bool isMined = false;
     public Material materialIdle;
     public Material materialLightUp;
+    public Material uncovered;
     public TextMesh displayText;
     public int ID;
     public int tilesPerRow;
     public List<Tile_Script> adjacentTiles;
     public int adjacentMines = 0;
     public string state = "idle";
+    public bool covered = true;
 
     public Tile_Script tileUpper;
     public Tile_Script tileLower;
@@ -41,7 +43,7 @@ public class Tile_Script : MonoBehaviour
         CountMines();
     }
 
-    public void DisplayText()
+    public void UncoverTile()
     {
         
         var mineText = Instantiate(displayText, new Vector3(transform.position.x, transform.position.y, transform.position.z - 5), displayText.transform.rotation);
@@ -52,6 +54,12 @@ public class Tile_Script : MonoBehaviour
         else
         {
             mineText.text = adjacentMines.ToString();
+            if (adjacentMines <= 0)
+            {
+                mineText.text = "";
+            }
+            covered = false;
+            this.GetComponent<MeshRenderer>().material = uncovered;
         }
     }
 
@@ -69,8 +77,7 @@ public class Tile_Script : MonoBehaviour
     private void initiateTiles()
     {
         /* Gets all of the neighboring tiles and stores them */
-        if (InBounds(Grid_Script.tilesAll, ID + tilesPerRow))
-            tileUpper = Grid_Script.tilesAll[ID + tilesPerRow]; //sets tileUpper
+        if (InBounds(Grid_Script.tilesAll, ID + tilesPerRow))                      tileUpper = Grid_Script.tilesAll[ID + tilesPerRow]; //sets tileUpper
         if (InBounds(Grid_Script.tilesAll, ID - tilesPerRow))                      tileLower = Grid_Script.tilesAll[ID - tilesPerRow]; //sets tileLower ... other lines do the same
         if (InBounds(Grid_Script.tilesAll, ID - 1) && ID % tilesPerRow != 0)       tileLeft = Grid_Script.tilesAll[ID - 1];
         if (InBounds(Grid_Script.tilesAll, ID + 1) && (ID + 1) % tilesPerRow != 0) tileRight = Grid_Script.tilesAll[ID + 1];
@@ -94,13 +101,19 @@ public class Tile_Script : MonoBehaviour
 
     private void OnMouseOver()
     {
-        gameObject.GetComponent<MeshRenderer>().material = materialLightUp;
+        if (covered)
+        {
+            gameObject.GetComponent<MeshRenderer>().material = materialLightUp;
+        }
         
     }
 
     private void OnMouseExit()
     {
-        gameObject.GetComponent<MeshRenderer>().material = materialIdle;
+        if (covered)
+        {
+            gameObject.GetComponent<MeshRenderer>().material = materialIdle;
+        }
     }
 
     private bool InBounds(List<Tile_Script> tilesAll, int targetID)
@@ -121,11 +134,6 @@ public class Tile_Script : MonoBehaviour
         {
             if (currentTile.isMined) adjacentMines += 1;
         }
-
-        displayText.text = adjacentMines.ToString();
-
-        if (adjacentMines <= 0)
-            displayText.text = "";
     }
 
     public void TileFall()
