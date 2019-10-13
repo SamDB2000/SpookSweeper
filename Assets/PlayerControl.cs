@@ -9,10 +9,15 @@ public class PlayerControl : MonoBehaviour
     public int moveDistance; // the max radius of the movement of the player
     public float moveRate; // the speed the player moves to tiles
     private Vector3 finalCoord;
+    public bool IsMoving => (transform.position != finalCoord);
+    public bool isDed; // is the player dead? idk, check this boolean out!
+    public float shrinkRate; // the rate the player shrinks when dead
+    public float speedRot; // speed of roation for DEATH
 
     // Start is called before the first frame update
     void Start()
     {
+        finalCoord = transform.position;
     }
 
     // Update is called once per frame
@@ -28,11 +33,24 @@ public class PlayerControl : MonoBehaviour
         {
             transform.Translate(movement); // move
         }
+
+        if (isDed)
+        {
+            transform.Rotate(Vector3.forward, 55 * Time.deltaTime * speedRot);
+            transform.localScale *= shrinkRate;
+            Debug.Log("ded");
+        }
+
     }
 
     public void MoveToTile(Tile_Script t)
     {
         coord = t.coord;
         finalCoord = t.transform.position;
+    }
+
+    public void KilLBadPlayer()
+    {
+        isDed = true;
     }
 }
