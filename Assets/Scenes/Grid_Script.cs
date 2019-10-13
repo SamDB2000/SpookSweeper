@@ -8,9 +8,9 @@ public class Grid_Script : MonoBehaviour
     public int numTiles = 12;
     public float distBetweenTiles = 2.0f;
     public int tilesPerRow = 9;
-    static List<Tile_Script> tilesAll;
-    static List<Tile_Script> tilesMined;
-    static List<Tile_Script> tilesUnmined;
+    public static List<Tile_Script> tilesAll;
+    public static List<Tile_Script> tilesMined;
+    public static List<Tile_Script> tilesUnmined;
     public float percentMines = 0.10f;
 
     // Start is called before the first frame update
@@ -39,6 +39,8 @@ public class Grid_Script : MonoBehaviour
 
             var tilePosition = new Vector3(transform.position.x + xOffset, transform.position.y + yOffset, transform.position.z);
             var newTile = Instantiate(tilePrefab, tilePosition, tilePrefab.transform.rotation);
+            newTile.ID = tilesCreated;
+            newTile.tilesPerRow = tilesPerRow;
             tilesAll.Add(newTile);
 
             xOffset += distBetweenTiles;

@@ -48,4 +48,4 @@ MonoBehaviour:
   numTiles: 144
   distBetweenTiles: 2
   tilesPerRow: 9
-  percentMines: 0.1
+  percentMines: 0.4
