@@ -34,23 +34,19 @@ public class Tile_Script : MonoBehaviour
     public float speedRot; // speed of roation for DEATH
 
     public bool isFlagged; // if the tile is flagged or not
-    public GameObject flagPrefab; // the flag sprite
-    private GameObject flag;
+    public SpriteRenderer flag; // the flag sprite
 
     // Start is called before the first frame update
     void Start()
     {
         initiateTiles();
         CountMines();
-        flag = Instantiate(flagPrefab, transform.position + new Vector3(0, 0, -5), flagPrefab.transform.rotation);
-        flag.GetComponent<SpriteRenderer>().enabled = isFlagged;
     }
 
     public void UncoverTile()
     {
         
-        
-        var mineText = Instantiate(displayText, new Vector3(transform.position.x, transform.position.y, transform.position.z - 5), displayText.transform.rotation);
+        var mineText = Instantiate(displayText, new Vector3(transform.position.x, transform.position.y, transform.position.z - 2), displayText.transform.rotation);
         if (this.isMined)
         {
             mineText.text = "B";
@@ -58,11 +54,12 @@ public class Tile_Script : MonoBehaviour
         else
         {
             mineText.text = adjacentMines.ToString();
-            if (adjacentMines <= 0)
+            covered = false;
+            if (adjacentMines == 0)
             {
                 mineText.text = "";
+                UncoverAdjacentTiles();
             }
-            covered = false;
             this.GetComponent<MeshRenderer>().material = uncovered;
         }
     }
@@ -109,11 +106,7 @@ public class Tile_Script : MonoBehaviour
         {
             gameObject.GetComponent<MeshRenderer>().material = materialLightUp;
         }
-        if (Input.GetMouseButtonUp(1))
-        {
-            RenderFlag();
-        }
-
+        
     }
 
     private void OnMouseExit()
@@ -157,9 +150,42 @@ public class Tile_Script : MonoBehaviour
     public void RenderFlag()
     {
         // spawn flag on top of tile when right click
-        isFlagged = !isFlagged;
-        flag.GetComponent<SpriteRenderer>().enabled = isFlagged;
+        if (isFlagged)
+        {
+            // change sprite to flag
+            
+            
+        } else
+        {
+            // change sprite to remove flag
+        }
     }
+
+    private void UncoverAdjacentTiles()
+    {
+        foreach(Tile_Script currentTile in adjacentTiles)
+        {
+            //uncover all adjacent nodes with 0 adjacent mines
+            if (!currentTile.isMined && currentTile.covered && currentTile.adjacentMines == 0)
+            {
+                currentTile.UncoverTile();
+            }
+            //uncover all adjacent nodes with more than 1 adjacent mine, then stop uncovering
+            else if (!currentTile.isMined && currentTile.covered && currentTile.adjacentMines > 0)
+            {
+                currentTile.UncoverTileExternal();
+            }
+        }
+    }
+
+    private void UncoverTileExternal()
+    {
+        var mineText = Instantiate(displayText, new Vector3(transform.position.x, transform.position.y, transform.position.z - 2), displayText.transform.rotation);
+        mineText.text = adjacentMines.ToString();
+        covered = false;
+        this.GetComponent<MeshRenderer>().material = uncovered;
+    }
+    
 }
 
 
