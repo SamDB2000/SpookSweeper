@@ -52,15 +52,16 @@ public class Tile_Script : MonoBehaviour
     private void initiateTiles()
     {
         /* Gets all of the neighboring tiles and stores them */
-        if (InBounds(Grid_Script.tilesAll, ID + tilesPerRow)) tileUpper = Grid_Script.tilesAll[ID + tilesPerRow]; //sets tileUpper
-        if (InBounds(Grid_Script.tilesAll, ID - tilesPerRow)) tileLower = Grid_Script.tilesAll[ID - tilesPerRow]; //sets tileLower ... other lines do the same
-        if (InBounds(Grid_Script.tilesAll, ID - 1) && ID % tilesPerRow != 0) tileLeft = Grid_Script.tilesAll[ID - 1];
-        if (InBounds(Grid_Script.tilesAll, ID + 1) && (ID + 1) % tilesPerRow != 0) tileRight = Grid_Script.tilesAll[ID + 1];
+        if (InBounds(Grid_Script.tilesAll, ID + tilesPerRow))
+            tileUpper = Grid_Script.tilesAll[ID + tilesPerRow]; //sets tileUpper
+        if (InBounds(Grid_Script.tilesAll, ID - tilesPerRow))                      tileLower = Grid_Script.tilesAll[ID - tilesPerRow]; //sets tileLower ... other lines do the same
+        if (InBounds(Grid_Script.tilesAll, ID + 1) && ID % tilesPerRow != 0)       tileLeft = Grid_Script.tilesAll[ID + 1];
+        if (InBounds(Grid_Script.tilesAll, ID - 1) && (ID + 1) % tilesPerRow != 0) tileRight = Grid_Script.tilesAll[ID - 1];
 
-        if (InBounds(Grid_Script.tilesAll, ID + tilesPerRow + 1) && (ID + 1) % tilesPerRow != 0) tileUpperRight = Grid_Script.tilesAll[ID + tilesPerRow + 1];
-        if (InBounds(Grid_Script.tilesAll, ID + tilesPerRow - 1) && ID % tilesPerRow != 0) tileUpperLeft = Grid_Script.tilesAll[ID + tilesPerRow - 1];
-        if (InBounds(Grid_Script.tilesAll, ID - tilesPerRow + 1) && (ID + 1) % tilesPerRow != 0) tileLowerRight = Grid_Script.tilesAll[ID - tilesPerRow + 1];
-        if (InBounds(Grid_Script.tilesAll, ID - tilesPerRow - 1) && ID % tilesPerRow != 0) tileLowerLeft = Grid_Script.tilesAll[ID - tilesPerRow - 1];
+        if (InBounds(Grid_Script.tilesAll, ID + tilesPerRow + 1) && (ID + 1) % tilesPerRow != 0)    tileUpperRight = Grid_Script.tilesAll[ID + tilesPerRow + 1];
+        if (InBounds(Grid_Script.tilesAll, ID + tilesPerRow - 1) &&  ID % tilesPerRow != 0)         tileUpperLeft = Grid_Script.tilesAll[ID + tilesPerRow - 1];
+        if (InBounds(Grid_Script.tilesAll, ID - tilesPerRow + 1) && (ID + 1) % tilesPerRow != 0)    tileLowerRight = Grid_Script.tilesAll[ID - tilesPerRow + 1];
+        if (InBounds(Grid_Script.tilesAll, ID - tilesPerRow - 1) &&  ID % tilesPerRow != 0)         tileLowerLeft = Grid_Script.tilesAll[ID - tilesPerRow - 1];
         /* InBounds function is the reason this doesn't vomit errors */
 
         // Add all of the other tiles into a list of adjacent tiles (if they exist)
@@ -84,11 +85,13 @@ public class Tile_Script : MonoBehaviour
         gameObject.GetComponent<MeshRenderer>().material = materialIdle;
     }
 
-    private bool InBounds(List<Tile_Script> inputArray, int targetID)
+    private bool InBounds(List<Tile_Script> tilesAll, int targetID)
     {
-        if (targetID < 0 || targetID >= inputArray.Capacity)
+        if ((targetID < 0) || (targetID >= tilesAll.Count))
+        {
             return false;
-        else return true;
+        }
+        return true;
     }
 
     // Counts the surrounding mines and updates the displayText for the tile
