@@ -69,8 +69,8 @@ public class Tile_Script : MonoBehaviour
         if (InBounds(Grid_Script.tilesAll, ID + tilesPerRow))
             tileUpper = Grid_Script.tilesAll[ID + tilesPerRow]; //sets tileUpper
         if (InBounds(Grid_Script.tilesAll, ID - tilesPerRow))                      tileLower = Grid_Script.tilesAll[ID - tilesPerRow]; //sets tileLower ... other lines do the same
-        if (InBounds(Grid_Script.tilesAll, ID + 1) && ID % tilesPerRow != 0)       tileLeft = Grid_Script.tilesAll[ID + 1];
-        if (InBounds(Grid_Script.tilesAll, ID - 1) && (ID + 1) % tilesPerRow != 0) tileRight = Grid_Script.tilesAll[ID - 1];
+        if (InBounds(Grid_Script.tilesAll, ID - 1) && ID % tilesPerRow != 0)       tileLeft = Grid_Script.tilesAll[ID - 1];
+        if (InBounds(Grid_Script.tilesAll, ID + 1) && (ID + 1) % tilesPerRow != 0) tileRight = Grid_Script.tilesAll[ID + 1];
 
         if (InBounds(Grid_Script.tilesAll, ID + tilesPerRow + 1) && (ID + 1) % tilesPerRow != 0)    tileUpperRight = Grid_Script.tilesAll[ID + tilesPerRow + 1];
         if (InBounds(Grid_Script.tilesAll, ID + tilesPerRow - 1) &&  ID % tilesPerRow != 0)         tileUpperLeft = Grid_Script.tilesAll[ID + tilesPerRow - 1];
