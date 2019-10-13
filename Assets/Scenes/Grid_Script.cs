@@ -38,7 +38,7 @@ public class Grid_Script : MonoBehaviour
             }
 
             var tilePosition = new Vector3(transform.position.x + xOffset, transform.position.y + yOffset, transform.position.z);
-            var newTile = Instantiate(tilePrefab, tilePosition, transform.rotation);
+            var newTile = Instantiate(tilePrefab, tilePosition, tilePrefab.transform.rotation);
             tilesAll.Add(newTile);
 
             xOffset += distBetweenTiles;
