@@ -34,17 +34,21 @@ public class Tile_Script : MonoBehaviour
     public float speedRot; // speed of roation for DEATH
 
     public bool isFlagged; // if the tile is flagged or not
-    public SpriteRenderer flag; // the flag sprite
+    public GameObject flagPrefab; // the flag sprite
+    private GameObject flag;
 
     // Start is called before the first frame update
     void Start()
     {
         initiateTiles();
         CountMines();
+        flag = Instantiate(flagPrefab, transform.position + new Vector3(0, 0, -5), flagPrefab.transform.rotation);
+        flag.GetComponent<SpriteRenderer>().enabled = isFlagged;
     }
 
     public void UncoverTile()
     {
+        
         
         var mineText = Instantiate(displayText, new Vector3(transform.position.x, transform.position.y, transform.position.z - 5), displayText.transform.rotation);
         if (this.isMined)
@@ -105,7 +109,11 @@ public class Tile_Script : MonoBehaviour
         {
             gameObject.GetComponent<MeshRenderer>().material = materialLightUp;
         }
-        
+        if (Input.GetMouseButtonUp(1))
+        {
+            RenderFlag();
+        }
+
     }
 
     private void OnMouseExit()
@@ -149,18 +157,9 @@ public class Tile_Script : MonoBehaviour
     public void RenderFlag()
     {
         // spawn flag on top of tile when right click
-        if (isFlagged)
-        {
-            // change sprite to flag
-            
-            
-        } else
-        {
-            // change sprite to remove flag
-        }
+        isFlagged = !isFlagged;
+        flag.GetComponent<SpriteRenderer>().enabled = isFlagged;
     }
-
-    public onMouseClick
 }
 
 
