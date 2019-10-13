@@ -12,6 +12,7 @@ public class Tile_Script : MonoBehaviour
     public int tilesPerRow;
     public List<Tile_Script> adjacentTiles;
     public int adjacentMines = 0;
+    public string state = "idle";
 
     public Tile_Script tileUpper;
     public Tile_Script tileLower;
@@ -36,6 +37,21 @@ public class Tile_Script : MonoBehaviour
     {
         initiateTiles();
         CountMines();
+        tileClickedEvent += DisplayText;
+    }
+
+    void DisplayText(Tile_Script t)
+    {
+        
+        var mineText = Instantiate(displayText, new Vector3(transform.position.x, transform.position.y, transform.position.z - 5), displayText.transform.rotation);
+        if (this.isMined)
+        {
+            mineText.text = "B";
+        }
+        else
+        {
+            mineText.text = adjacentMines.ToString();
+        }
     }
 
     // Update is called once per frame
@@ -78,6 +94,7 @@ public class Tile_Script : MonoBehaviour
     private void OnMouseOver()
     {
         gameObject.GetComponent<MeshRenderer>().material = materialLightUp;
+        
     }
 
     private void OnMouseExit()

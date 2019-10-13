@@ -27,6 +27,7 @@ public class GameControl : MonoBehaviour
             // the move is valid, so make it happen
             player.MoveToTile(t);
         }
+
     }
 
     bool IsValidMove(Vector2Int playerCoord, Vector2Int tileCoord)

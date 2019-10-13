@@ -48,6 +48,6 @@ MonoBehaviour:
   numTiles: 144
   distBetweenTiles: 2
   tilesPerRow: 9
-  percentMines: 0.1
+  percentMines: 0.25
   gameController: {fileID: 628962820154337572, guid: 854386468e3a2ed478f94b351e7b3972,
     type: 3}
